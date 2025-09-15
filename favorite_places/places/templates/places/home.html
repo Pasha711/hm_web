@@ -1,0 +1,19 @@
+{% extends 'places/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Куди піти сьогодні?</h1>
+    <p class="lead">Не можеш вирішити? Натисни на кнопку, й система обере випадкове місце з твого списку!</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-lg">Підкажи мені!</button>
+    </form>
+</div>
+
+{% if random_place %}
+<div class="mt-5">
+    <h3>Відмінний вибір на сьогодня:</h3>
+    {% include 'places/_place_card.html' with place=random_place is_full_description=False %}
+</div>
+{% endif %}
+{% endblock %}

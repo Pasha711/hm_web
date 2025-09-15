@@ -1,0 +1,43 @@
+{% load static %}
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{% static 'places/images/default.jpg' %}" class="img-fluid rounded-start" alt="Фото місця">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{% url 'place_detail' place.pk %}">{{ place.name }}</a>
+                </h5>
+                <p class="card-text">
+                    {% if is_full_description %}
+                        {{ place.description|linebreaks }}
+                    {% else %}
+                        {{ place.description|truncatewords:10 }}
+                    {% endif %}
+                </p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        <strong>Тип:</strong> {{ place.place_type }} |
+                        <strong>Локація:</strong>
+                        {% if place.location %}
+                            {{ place.location }}
+                        {% else %}
+                            Secret place 👀
+                        {% endif %}
+                    </small>
+                </p>
+                <p class="card-text">
+                    <strong>Рейтинг:</strong>
+                    <span class="text-warning">
+                        {% for i in "x"|rjust:place.rating %}★{% endfor %}
+                    </span>
+                    <span class="text-secondary">
+                        {% for i in "x"|rjust:place.rating|add:"-5"|slice:"1:" %}☆{% endfor %}
+                    </span>
+                </p>
+                <p class="card-text"><small class="text-muted">Додано: {{ place.created_at|date:"d.m.Y" }}</small></p>
+            </div>
+        </div>
+    </div>
+</div>
