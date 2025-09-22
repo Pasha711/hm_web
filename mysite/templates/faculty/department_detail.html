@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ department.name }} | Сайт Факультета природничих наук{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-lg">
+    <h1 class="text-4xl font-bold text-gray-900">{{ department.name }}</h1>
+    <p class="text-lg text-gray-600 mt-1">Завідуючий кафедрою: {{ department.head_of_department }}</p>
+    
+    <div class="mt-8">
+        <h2 class="text-3xl font-semibold border-b pb-3 mb-4">Склад кафедри</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Ім'я</th>
+                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Посада</th>
+                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Науковий ступінь</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for teacher in department.teachers.all %}
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="py-3 px-4">{{ teacher.name }}</td>
+                        <td class="py-3 px-4">{{ teacher.position }}</td>
+                        <td class="py-3 px-4">{{ teacher.degree }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="py-4 px-4 text-center text-gray-500">Нема інформації про викладачів.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
