@@ -6,7 +6,7 @@ source fpvenv/Scripts/activate
 
 pip install Django
 
-python manage.py makemigrations places
+#python manage.py makemigrations places
 
 python manage.py migrate
 
