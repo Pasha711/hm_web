@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('places.urls')), # Подключаем URL-ы нашего приложения
+    path('', include('places.urls')), # РџС–РґРєР»СЋС‡Р°С”РјРѕ URL РЅР°С€РѕРіРѕ РґРѕРґР°С‚РєСѓ
 ]
