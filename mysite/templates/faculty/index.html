@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Головна | Сайт Факультета природничих наук{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-lg">
+    {% if content %}
+        <h1 class="text-4xl font-bold mb-4 text-gray-900">{{ content.title }}</h1>
+        
+        <div class="prose max-w-none text-lg text-gray-700 space-y-4">
+            <h2 class="text-2xl font-semibold border-b pb-2">Опис факультету</h2>
+            <p>{{ content.description|linebreaks }}</p>
+            
+            <h2 class="text-2xl font-semibold border-b pb-2 mt-6">Контакти</h2>
+            <p>{{ content.contact_info|linebreaks }}</p>
+        </div>
+    {% else %}
+        <h1 class="text-4xl font-bold mb-4">Ласкаво просимо!</h1>
+        <p class="text-lg text-gray-700">Інформація про факультет невдовзі з'явиться. Будь ласка, заповніть дані на <a href="/admin/" class="text-blue-600 hover:underline">адмін-панелі</a> у розділі "Головна сторінка".</p>
+    {% endif %}
+</div>
+{% endblock %}

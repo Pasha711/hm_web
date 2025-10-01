@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Спеціальності | Сайт Факультета природничих наук{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-lg">
+    <h1 class="text-4xl font-bold mb-6 text-gray-900 border-b pb-4">Наші Спеціальності</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+        {% for program in programs %}
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+            <h2 class="text-2xl font-semibold text-blue-700">
+                <a href="{{ program.get_absolute_url }}" class="hover:underline">{{ program.name }}</a>
+            </h2>
+            <p class="text-sm text-gray-500 mb-2">Код: {{ program.code }}</p>
+            <p class="text-gray-700 mt-2">{{ program.get_short_description }}</p>
+            <div class="mt-4 pt-4 border-t">
+                <p class="font-semibold">Координатор: <span class="font-normal">{{ program.coordinator_name }}</span></p>
+                <p class="font-semibold">Контактна інформація: <span class="font-normal">{{ program.coordinator_contact }}</span></p>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-lg col-span-full">На поточний момент нема інформації про спеціальності.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

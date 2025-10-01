@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Кафедры | Сайт Факультета природничих наук{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-lg">
+    <h1 class="text-4xl font-bold mb-6 text-gray-900 border-b pb-4">Наші Кафедри</h1>
+
+    <div class="space-y-8 mt-6">
+        {% for department in departments %}
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold text-blue-700">
+                <a href="{{ department.get_absolute_url }}" class="hover:underline">{{ department.name }}</a>
+            </h2>
+            <p class="text-gray-600 mt-1">Завідуючий кафедрою: {{ department.head_of_department }}</p>
+            
+            <div class="mt-4">
+                <h3 class="font-semibold">Випускаюча кафедра для спеціальностей:</h3>
+                {% if department.programs.all %}
+                    <ul class="list-disc list-inside text-gray-700 mt-2">
+                    {% for program in department.programs.all %}
+                        <li><a href="{{ program.get_absolute_url }}" class="text-blue-600 hover:underline">{{ program.name }} ({{ program.code }})</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-gray-500 mt-2">Нема прив'язаних спеціальностей.</p>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-lg">На поточний момент нема інформації про кафедри.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

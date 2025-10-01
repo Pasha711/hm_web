@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Сайт Факультета природничих наук{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="text-2xl font-bold text-gray-800">Факультет природничих наук</a>
+                <div class="flex space-x-4">
+                    <a href="{% url 'index' %}" class="text-gray-600 hover:text-blue-600 transition duration-300">Головна</a>
+                    <a href="{% url 'program_list' %}" class="text-gray-600 hover:text-blue-600 transition duration-300">Спеціальності</a>
+                    <a href="{% url 'department_list' %}" class="text-gray-600 hover:text-blue-600 transition duration-300">Кафедри</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        {% block content %}
+        <!-- Вміст сторінки буде тут -->
+        {% endblock %}
+    </main>
+
+    <footer class="bg-white mt-8 py-4">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; {% now "Y" %} Сайт Факультета природничих наук. Усі права захищені.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
