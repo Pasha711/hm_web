@@ -1,0 +1,6 @@
+{% extends 'places/base.html' %}
+
+{% block content %}
+{% include 'places/_place_card.html' with place=place is_full_description=True %}
+<a href="{% url 'place_list' %}" class="btn btn-secondary mt-3">Назад до списку</a>
+{% endblock %}

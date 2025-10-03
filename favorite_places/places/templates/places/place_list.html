@@ -1,0 +1,13 @@
+{% extends 'places/base.html' %}
+
+{% block content %}
+<h2>Список Ваших улюблених місць</h2>
+<hr>
+{% if places %}
+    {% for place in places %}
+        {% include 'places/_place_card.html' with place=place is_full_description=False %}
+    {% endfor %}
+{% else %}
+    <p>Ви ще не додали жодного місця. <a href="{% url 'add_place' %}">Давайте це виправимо!</a></p>
+{% endif %}
+{% endblock %}
